@@ -1,5 +1,5 @@
-name: abc
-description: description
+name: ruff
+description: Run 'ruff'
 
 branding:
   icon: activity
@@ -9,9 +9,6 @@ inputs:
   token:
     description: GitHub Personal Access Token
     default: ${{ github.token }}
-  flag:
-    description: Example flag
-    default: false
 
 runs:
   using: composite
@@ -21,18 +18,18 @@ runs:
       with:
         fetch-depth: 0
 
-    - name: Install 'uv'
-      uses: astral-sh/setup-uv@v7
-      with:
-        python-version: 3.13
-
-    - name: Install 'dycw-actions'
-      run: uv tool install --reinstall dycw-actions
-      shell: bash
-
     - name: Run 'action abc'
       env:
         TOKEN: ${{ inputs.token }}
         FLAG: ${{ inputs.flag }}
       run: uv tool run --from dycw-actions --isolated action abc
       shell: bash
+
+    - name: Install 'ruff'
+      uses: astral-sh/ruff-action@v3
+
+    - name: Run 'ruff check'
+      run: ruff check --fix
+
+    - name: Run 'ruff format'
+      run: ruff format
