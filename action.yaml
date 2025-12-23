@@ -23,6 +23,8 @@ runs:
 
     - name: Run 'ruff check --fix'
       run: ruff check --fix
+      shell: bash
 
     - name: Run 'ruff format'
       run: ruff format
+      shell: bash
