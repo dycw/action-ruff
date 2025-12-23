@@ -1,3 +1,3 @@
 # `action-ruff`
 
-Run 'pytest'
+Run 'ruff'
