@@ -1,3 +1,3 @@
-# `template-action`
+# `action-ruff`
 
-Template for Python actions
+Run 'pytest'
