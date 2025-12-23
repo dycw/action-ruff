@@ -8,7 +8,7 @@ branding:
 inputs:
   token:
     description: GitHub Personal Access Token
-    default: ${{ github.token }}
+    default: ${{github.token}}
 
 runs:
   using: composite
@@ -18,17 +18,10 @@ runs:
       with:
         fetch-depth: 0
 
-    - name: Run 'action abc'
-      env:
-        TOKEN: ${{ inputs.token }}
-        FLAG: ${{ inputs.flag }}
-      run: uv tool run --from dycw-actions --isolated action abc
-      shell: bash
-
     - name: Install 'ruff'
       uses: astral-sh/ruff-action@v3
 
-    - name: Run 'ruff check'
+    - name: Run 'ruff check --fix'
       run: ruff check --fix
 
     - name: Run 'ruff format'
