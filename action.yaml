@@ -6,11 +6,8 @@ branding:
   color: gray-dark
 
 inputs:
-  token-checkout:
-    description: Personal access token (PAT) used to fetch the repository
-    default: ${{github.token}}
-  token-ruff:
-    description: Personal access token (PAT) used to download ruff
+  token:
+    description: Personal access token (PAT)
     default: ${{github.token}}
 
 runs:
@@ -19,12 +16,12 @@ runs:
     - name: Check out repo
       uses: actions/checkout@v6
       with:
-        token: ${{inputs.token-checkout}}
+        token: ${{inputs.token}}
 
     - name: Install 'ruff'
       uses: astral-sh/ruff-action@v3
       with:
-        github-token: ${{inputs.token-ruff}}
+        github-token: ${{inputs.token}}
 
     - name: Run 'ruff check --fix'
       run: ruff check --fix
